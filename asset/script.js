@@ -1,211 +1,45 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+var searchinput = "covid"
+var searchstring = 'q=' + searchinput + '&'
+
+var today = dayjs().format("YYYY-MM-DD")
+var datestring = "from=" + today + "&"
+
+
+// possible country codes 
+// ae, ar, at, au, be, bg, br, ca, ch, cn, co, cu, cz, de, eg, fr, gb, gr, hk, hu, id, ie, il, in, it, jp, kr, lt, lv, ma, mx, my, ng, nl, no, nz, ph, pl, pt, ro, rs, ru, sa, se, sg, si, sk, th, tr, tw, ua, us, ve, za
+var country = "us"
+var countrystring = "country=" + country + "&"
+
+// possible categories
+//business, entertainment, general, health, science, sports, technology
+var category = "health"
+var categorystring = "category=" + category + "&"
+
+// url to show top headlines in specific categories
+var topheadlinesurl = "https://newsapi.org/v2/top-headlines?" +
+          countrystring +
+          categorystring +
+          searchstring +
+          "apiKey=9db76ac16d454b918d7c994623816b9b"
+
+var req = new Request(topheadlinesurl);
+
+// grab the API url and manipulates the data 
+fetch(req)
+    .then(function(response) {
+        return response.json();
+    })
+
+    .then(function (data) {
+
+        for (var i=0; i<10; i++) {
+
+            var title = data.articles[i].title
+            var author = data.articles[i].author
+            var content = data.articles[i].content
+            console.log(title,author,content)
+        }
+      });
 
 
 //This is function to read news everytime a read button is clicked more coments will be addid ========= Getnet's code starts here=============
