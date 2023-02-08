@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  </head>
+  <body>
+    <!-- hero -->
+    <section class="hero is-small is-primary">
+        <div class="hero-body">
+          <p class="title">
+            Send News
+          </p>
+          <!-- <p class="subtitle">
+            sub title
+          </p> -->
+        </div>
+    </section>
+    <!-- main body -->
+    <div class="columns">
+        <!-- aside (left side) -->
+        <div class="column is-3">
+            <!-- search box -->
+            <div class="box">
+                <div class="field">
+                    <label class="label">Search News</label>
+                    <div class="control">
+                      <input class="input" type="text" placeholder="Key word">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Catagory</label>
+                    <div class="control">
+                        <div class="select">
+                            <select>
+                                <option>Select dropdown</option>
+                                <option>With options</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button class="button is-primary">Search</button>
+            </div>
+            <!-- searh box ends here -->
+            <!-- search history  -->
+             <label class="label">Favorite</label>
+            <div class="box favorite">
+                
+            </div>
+        </div>
+
+       <!-- Content (right side) -->
+        <div class="column is-9">
+            <div class="container ">
+                <!-- news card -->
+                <div class="card">
+                    <header class="card-header">
+                      <p class="card-header-title">
+                        Component
+                      </p>
+                      <button class="card-header-icon" aria-label="more options">
+                        <span class="icon">
+                          <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                      </button>
+                    </header>
+                    <div class="card-content">
+                      <div class="content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quasi saepe voluptatum labore id quibusdam dolorum doloremque nulla tempore architecto, natus aspernatur quo obcaecati rem aliquid nobis inventore neque repudiandae?
+                        <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
+                        <br>
+                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                      </div>
+                    </div>
+                    <footer class="card-footer">
+                      <a href="#" class="card-footer-item">Play</a>
+                      <a href="#" class="card-footer-item">Edit</a>
+                      <a href="#" class="card-footer-item">Delete</a>
+                    </footer>
+                  </div>
+            </div>  
+             
+        </div>
+    </div>
+
+  </body>
+</html>
