@@ -75,28 +75,46 @@
                           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
                           Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quasi saepe voluptatum labore id quibusdam dolorum doloremque nulla tempore architecto, natus aspernatur quo obcaecati rem aliquid nobis inventore neque repudiandae?
   
-                        </div>
+                    </div>
                       </div>
                       <!-- modal -->
-                      <div id="modal-js-example" class="modal">
+                      <div class="modal" id="news-popup">
                         <div class="modal-background"></div>
-                      
-                        <div class="modal-content">
-                          <div class="box">
-                            <p>Modal JS example</p>
-                            <!-- Your content -->
+                        <div class="modal-card">
+                          <header class="modal-card-head">
+                            <p class="modal-card-title">Modal title</p>
+                            <button class="delete" aria-label="close"></button>
+                          </header>
+                          <div class="modal-card-body">
+                            <div class="content description">
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quasi saepe voluptatum labore id quibusdam dolorum doloremque nulla tempore architecto, natus aspernatur quo obcaecati rem aliquid nobis inventore neque repudiandae?
+      
+                            </div>
                           </div>
+                          <div class="modal-card-body">
+                              <div class="content article hide">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quasi saepe voluptatum labore id quibusdam dolorum doloremque nulla tempore architecto, natus aspernatur quo obcaecati rem aliquid nobis inventore neque repudiandae?
+        
+                          </div>
+                          <footer class="modal-card-foot">
+                            <a href="#" class="card-footer-item read-aloud">Play</a>
+                            <a href="#" class="card-footer-item">Link</a>
+                            <a href="#" class="card-footer-item">Favorite</a>
+                          </footer>
                         </div>
+                      </div>
                       
                         <button class="modal-close is-large" aria-label="close"></button>
                       </div>
                       <!-- mudal -->
                     <footer class="card-footer">
-                      <a href="#" class="card-footer-item">Play</a>
+                      <a href="#" class="card-footer-item read-aloud">Play</a>
                       <!-- <button class="js-modal-trigger" data-target="modal-js-example">
                         Read More
                       </button> -->
-                      <a href="#" class="js-modal-trigger card-footer-item" data-target="modal-js-example">Read more</a>
+                      <a href="#" class="js-modal-trigger card-footer-item" data-target="news-popup">Read more</a>
                     </footer>
                   </div>
             </div>  
