@@ -1,4 +1,4 @@
-// ============modal code==================
+// ============modal code start =======================================================================
 document.addEventListener('DOMContentLoaded', () => {
   // Functions to open and close a modal
   function openModal($el) {
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-// ===========================Mo
+// ===========================Modal code end ==============================================================
 
 var searchinput = "covid"
 var searchstring = 'q=' + searchinput + '&'
@@ -92,7 +92,7 @@ fetch(req)
 
 
 //This is function to read news everytime a read button is clicked more coments will be addid ========= Getnet's code starts here=============
-var read=document.querySelectorAll(".read");
+var read=document.querySelectorAll(".read-aloud");
 var newsAudio =new Audio();
 var audioUrl="";
 var nxtAudioUrl="";
@@ -103,9 +103,9 @@ var newsAudioEnd=0;
 function readAloud() {
   setInterval(function() {
     console.log(newsAudioEnd);
-    if (newsAudio.currentTime==newsAudioEnd) {
+    if (newsAudio.currentTime>0 && newsAudio.currentTime==newsAudioEnd) {
       newsAudio.pause();
-      read[currntAudioIndex].textContent='read'
+      read[currntAudioIndex].textContent='Play'
     }else{
       newsAudioEnd=newsAudio.currentTime;
      
@@ -116,11 +116,16 @@ function readAloud() {
   for (let i = 0; i < read.length; i++) {
      
     read[i].addEventListener("click", ()=>{
-       nxtAudioUrl="./file_example_MP3_1MG"+ read[i].parentElement.children[0].textContent+ ".mp3";
+     
+       var newsDiscription=read[i].parentElement.parentElement.children[2].children[0].textContent.trim()+"    ";
+       var newsContent=read[i].parentElement.parentElement.children[2].children[0].textContent.trim();
+       nxtAudioUrl="http://api.voicerss.org/?key=e25d609815964af58977c036e5460b2b&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+ newsDiscription + newsContent;
+       console.log(nxtAudioUrl, "next");
+       console.log(audioUrl,"current");
       if (nxtAudioUrl===audioUrl||audioUrl==="") {
         console.log(newsAudio);
         if (newsAudio.paused) {
-          audioUrl="./file_example_MP3_1MG"+ read[i].parentElement.children[0].textContent+ ".mp3";
+          audioUrl="http://api.voicerss.org/?key=e25d609815964af58977c036e5460b2b&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+newsDiscription + newsContent;
           currntAudioIndex=i;
           newsAudio =new Audio(audioUrl);
           newsAudio.play();
@@ -130,13 +135,13 @@ function readAloud() {
           newsAudio.pause();
           pausedAudioTime=newsAudio.currentTime;
       
-          read[i].textContent="read"
+          read[i].textContent="Play"
         }
       } else {
         newsAudio.pause();
-        read[currntAudioIndex].textContent='read'
+        read[currntAudioIndex].textContent='Play'
          
-        audioUrl="./file_example_MP3_1MG"+ read[i].parentElement.children[0].textContent+ ".mp3";
+        audioUrl="http://api.voicerss.org/?key=e25d609815964af58977c036e5460b2b&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+newsDiscription + newsContent;
         currntAudioIndex=i;
         newsAudio =new Audio(audioUrl);
         newsAudio.play();
@@ -147,5 +152,5 @@ function readAloud() {
     
   }
 }
-//readAloud();
+readAloud();
 //============================Getenet's code ends here===================================================
