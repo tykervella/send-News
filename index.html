@@ -1,129 +1,146 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
-    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  </head>
-  <body>
-    <!-- hero -->
-    <section class="hero is-small is-primary">
-        <div class="hero-body">
-          <p class="title">
-            Send News
-          </p>
-          <!-- <p class="subtitle">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello Bulma!</title>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+
+<body>
+  <!-- hero -->
+  <section class="hero is-small is-primary">
+    <div class="hero-body">
+      <p class="title">
+        Send News
+      </p>
+      <!-- <p class="subtitle">
             sub title
           </p> -->
+    </div>
+  </section>
+  <!-- main body -->
+  <div class="columns">
+    <!-- aside (left side) -->
+    <div class="column is-3">
+      <!-- search box -->
+      <div class="box">
+        <div class="field">
+          <label class="label">Search News</label>
+          <div class="control">
+            <input class="input" id="searchString" type="text" placeholder="Key word">
+          </div>
         </div>
-    </section>
-    <!-- main body -->
-    <div class="columns">
-        <!-- aside (left side) -->
-        <div class="column is-3">
-            <!-- search box -->
-            <div class="box">
-                <div class="field">
-                    <label class="label">Search News</label>
-                    <div class="control">
-                      <input class="input" type="text" placeholder="Key word">
-                    </div>
-                </div>
 
-                <div class="field">
-                    <label class="label">Catagory</label>
-                    <div class="control">
-                        <div class="select">
-                            <select>
-                                <option>Select dropdown</option>
-                                <option>With options</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <button class="button is-primary">Search</button>
+        <div class="field">
+          <label class="label">Catagory</label>
+          <div class="control">
+            <div class="select">
+              <select id="selectCat">
+                <option>Select dropdown</option>
+                <option value="business">Business</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="general">General</option>
+                <option value="health">Health</option>
+                <option value="science">Science</option>
+                <option value="sports">Sports</option>
+                <option value="technology">Technology</option>
+              </select>
             </div>
-            <!-- searh box ends here -->
-            <!-- search history  -->
-             <label class="label">Favorite</label>
-            <div class="box favorite">
-                
-            </div>
+          </div>
         </div>
+        <button class="button is-primary" id="searchBtn">Search</button>
+      </div>
+      <!-- searh box ends here -->
+      <!-- search history  -->
+      <label class="label">Favorite</label>
+      <div class="box favorite">
 
-       <!-- Content (right side) -->
-        <div class="column is-9">
-            <div class="container ">
-                <!-- news card -->
-                <div class="card">
-                    <header class="card-header">
-                      <p class="card-header-title">
-                        Component
-                      </p>
-                    </header>
-                    <div class="card-content">
-                      <div class="content description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quasi saepe voluptatum labore id quibusdam dolorum doloremque nulla tempore architecto, natus aspernatur quo obcaecati rem aliquid nobis inventore neque repudiandae?
-
-                      </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="content article hide">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quasi saepe voluptatum labore id quibusdam dolorum doloremque nulla tempore architecto, natus aspernatur quo obcaecati rem aliquid nobis inventore neque repudiandae?
-  
-                    </div>
-                      </div>
-                      <!-- modal -->
-                      <div class="modal" id="news-popup">
-                        <div class="modal-background"></div>
-                        <div class="modal-card">
-                          <header class="modal-card-head">
-                            <p class="modal-card-title">Modal title</p>
-                            <button class="delete" aria-label="close"></button>
-                          </header>
-                          <div class="modal-card-body">
-                            <div class="content description">
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quasi saepe voluptatum labore id quibusdam dolorum doloremque nulla tempore architecto, natus aspernatur quo obcaecati rem aliquid nobis inventore neque repudiandae?
-      
-                            </div>
-                          </div>
-                          <div class="modal-card-body">
-                              <div class="content article hide">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quasi saepe voluptatum labore id quibusdam dolorum doloremque nulla tempore architecto, natus aspernatur quo obcaecati rem aliquid nobis inventore neque repudiandae?
-        
-                          </div>
-                          <footer class="modal-card-foot">
-                            <a href="#" class="card-footer-item read-aloud">Play</a>
-                            <a href="#" class="card-footer-item">Link</a>
-                            <a href="#" class="card-footer-item">Favorite</a>
-                          </footer>
-                        </div>
-                      </div>
-                      
-                        <button class="modal-close is-large" aria-label="close"></button>
-                      </div>
-                      <!-- mudal -->
-                    <footer class="card-footer">
-                      <a href="#" class="card-footer-item read-aloud">Play</a>
-                      <!-- <button class="js-modal-trigger" data-target="modal-js-example">
-                        Read More
-                      </button> -->
-                      <a href="#" class="js-modal-trigger card-footer-item" data-target="news-popup">Read more</a>
-                    </footer>
-                  </div>
-            </div>  
-             
-        </div>
+      </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="./assets/script.js"></script>  
+    <!-- Content (right side) -->
+    <div class="column is-9">
+      <div class="container ">
+        <!-- news card -->
+        <div class="card">
+          <header class="card-header">
+            <p id="title" class="card-header-title">
+              Component
+            </p>
+          </header>
+          <div class="card-content">
+            <div id="mainContent" class="content description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quasi saepe voluptatum labore id quibusdam
+              dolorum doloremque nulla tempore architecto, natus aspernatur quo obcaecati rem aliquid nobis inventore
+              neque repudiandae?
 
-  </body>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="content article hide">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quasi saepe voluptatum labore id quibusdam
+              dolorum doloremque nulla tempore architecto, natus aspernatur quo obcaecati rem aliquid nobis inventore
+              neque repudiandae?
+
+            </div>
+          </div>
+          <!-- modal -->
+          <div class="modal" id="news-popup">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+              <header class="modal-card-head">
+                <p class="modal-card-title">Modal title</p>
+                <button class="delete" aria-label="close"></button>
+              </header>
+              <div class="modal-card-body">
+                <div id="readMore" class="content description">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quasi saepe voluptatum labore id
+                  quibusdam dolorum doloremque nulla tempore architecto, natus aspernatur quo obcaecati rem aliquid
+                  nobis inventore neque repudiandae?
+
+                </div>
+              </div>
+              <div class="modal-card-body">
+                <div class="content article hide">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quasi saepe voluptatum labore id
+                  quibusdam dolorum doloremque nulla tempore architecto, natus aspernatur quo obcaecati rem aliquid
+                  nobis inventore neque repudiandae?
+
+                </div>
+                <footer class="modal-card-foot">
+                  <a href="#" class="card-footer-item read-aloud">Play</a>
+                  <a href="#" class="card-footer-item">Link</a>
+                  <a href="#" class="card-footer-item">Favorite</a>
+                </footer>
+              </div>
+            </div>
+
+            <button class="modal-close is-large" aria-label="close"></button>
+          </div>
+          <!-- mudal -->
+          <footer class="card-footer">
+            <a href="#" class="card-footer-item read-aloud">Play</a>
+            <!-- <button class="js-modal-trigger" data-target="modal-js-example">
+                        Read More
+                      </button> -->
+            <a href="#" class="js-modal-trigger card-footer-item" data-target="news-popup">Read more</a>
+          </footer>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="./assets/script.js"></script>
+
+</body>
+
 </html>
