@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 // ===========================Mo
 
-var searchinput = "covid"
+var searchinput = ""
 var searchstring = 'q=' + searchinput + '&'
 
 var today = dayjs().format("YYYY-MM-DD")
@@ -72,6 +72,8 @@ var topheadlinesurl = "https://newsapi.org/v2/top-headlines?" +
 
 var req = new Request(topheadlinesurl);
 
+var bodyEl = $(".container");
+
 // grab the API url and manipulates the data 
 fetch(req)
     .then(function(response) {
@@ -85,8 +87,28 @@ fetch(req)
 
             var title = data.articles[i].title
             var author = data.articles[i].author
-            var content = data.articles[i].content
-            console.log(title,author,content)
+            var content = data.articles[i].description
+            // console.log(title,author,content)
+
+            var liItem = document.createElement('div');
+            liItem.setAttribute("class", "card");
+
+            bodyEl.append(liItem);
+
+
+            var titleEl = document.createElement('p')
+            titleEl.setAttribute("class", "card-header-title");
+
+            titleEl.textContent = title;
+            liItem.append(titleEl);
+
+            var contentEl = document.createElement('div')
+            titleEl.setAttribute("class", "card-content");
+
+            contentEl.textContent = content;
+            liItem.append(contentEl);
+
+            
         }
       });
 
@@ -100,52 +122,52 @@ var currntAudioIndex=0;
 var pausedAudioTime=0
 var newsAudioEnd=0;
 //This function will read aloud the content of news cadrd where clicked button located . content element will be selected based on parent of button and the child of that parent
-function readAloud() {
-  setInterval(function() {
-    console.log(newsAudioEnd);
-    if (newsAudio.currentTime==newsAudioEnd) {
-      newsAudio.pause();
-      read[currntAudioIndex].textContent='read'
-    }else{
-      newsAudioEnd=newsAudio.currentTime;
+// function readAloud() {
+//   setInterval(function() {
+//     console.log(newsAudioEnd);
+//     if (newsAudio.currentTime==newsAudioEnd) {
+//       newsAudio.pause();
+//       read[currntAudioIndex].textContent='read'
+//     }else{
+//       newsAudioEnd=newsAudio.currentTime;
      
-      console.log(newsAudio);
-    }
-  }, 1000)
+//       console.log(newsAudio);
+//     }
+//   }, 1000)
   
-  for (let i = 0; i < read.length; i++) {
+//   for (let i = 0; i < read.length; i++) {
      
-    read[i].addEventListener("click", ()=>{
-       nxtAudioUrl="./file_example_MP3_1MG"+ read[i].parentElement.children[0].textContent+ ".mp3";
-      if (nxtAudioUrl===audioUrl||audioUrl==="") {
-        console.log(newsAudio);
-        if (newsAudio.paused) {
-          audioUrl="./file_example_MP3_1MG"+ read[i].parentElement.children[0].textContent+ ".mp3";
-          currntAudioIndex=i;
-          newsAudio =new Audio(audioUrl);
-          newsAudio.play();
-          newsAudio.currentTime=pausedAudioTime;
-          read[i].textContent="Pouse";
-        } else {
-          newsAudio.pause();
-          pausedAudioTime=newsAudio.currentTime;
+//     read[i].addEventListener("click", ()=>{
+//        nxtAudioUrl="./file_example_MP3_1MG"+ read[i].parentElement.children[0].textContent+ ".mp3";
+//       if (nxtAudioUrl===audioUrl||audioUrl==="") {
+//         console.log(newsAudio);
+//         if (newsAudio.paused) {
+//           audioUrl="./file_example_MP3_1MG"+ read[i].parentElement.children[0].textContent+ ".mp3";
+//           currntAudioIndex=i;
+//           newsAudio =new Audio(audioUrl);
+//           newsAudio.play();
+//           newsAudio.currentTime=pausedAudioTime;
+//           read[i].textContent="Pouse";
+//         } else {
+//           newsAudio.pause();
+//           pausedAudioTime=newsAudio.currentTime;
       
-          read[i].textContent="read"
-        }
-      } else {
-        newsAudio.pause();
-        read[currntAudioIndex].textContent='read'
+//           read[i].textContent="read"
+//         }
+//       } else {
+//         newsAudio.pause();
+//         read[currntAudioIndex].textContent='read'
          
-        audioUrl="./file_example_MP3_1MG"+ read[i].parentElement.children[0].textContent+ ".mp3";
-        currntAudioIndex=i;
-        newsAudio =new Audio(audioUrl);
-        newsAudio.play();
+//         audioUrl="./file_example_MP3_1MG"+ read[i].parentElement.children[0].textContent+ ".mp3";
+//         currntAudioIndex=i;
+//         newsAudio =new Audio(audioUrl);
+//         newsAudio.play();
         
-        read[i].textContent="Pouse";
-      }
-    });
+//         read[i].textContent="Pouse";
+//       }
+//     });
     
-  }
-}
-//readAloud();
+//   }
+// }
+// readAloud();
 //============================Getenet's code ends here===================================================
