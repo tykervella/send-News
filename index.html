@@ -61,77 +61,73 @@
       </div>
     </div>
 
-    <!-- Content (right side) -->
-    <div class="column is-9">
-      <div class="container ">
-        <!-- news card -->
-        <div class="card">
-          <header class="card-header">
-            <p id="title" class="card-header-title">
-              Component
-            </p>
-          </header>
-          <div class="card-content">
-            <div id="mainContent" class="content description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quasi saepe voluptatum labore id quibusdam
-              dolorum doloremque nulla tempore architecto, natus aspernatur quo obcaecati rem aliquid nobis inventore
-              neque repudiandae?
 
-            </div>
-          </div>
-          <div class="card-content">
-            <div class="content article hide">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quasi saepe voluptatum labore id quibusdam
-              dolorum doloremque nulla tempore architecto, natus aspernatur quo obcaecati rem aliquid nobis inventore
-              neque repudiandae?
+       <!-- Content (right side) -->
+        <div class="column is-9">
+            <div class="container ">
+                <!-- news card -->
+                <div class="card">
+                  <header class="card-header">
+                    <p class="card-header-title">
+                      Component
+                    </p>
+                  </header>
+                  <br>
+                  <div class="card-content">
+                    <div class="content description">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quasi saepe voluptatum labore id quibusdam dolorum doloremque nulla tempore architecto, natus aspernatur quo obcaecati rem aliquid nobis inventore neque repudiandae?
+                    </div>
+                  </div>
+                  <div class="card-content article hide">
+                    <div class="content  article">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quasi saepe voluptatum labore id quibusdam dolorum doloremque nulla tempore architecto, natus aspernatur quo obcaecati rem aliquid nobis inventore neque repudiandae?
+                    </div>
+                  </div>
+ <!-- modal ==Modal========Modal==========================================Modal===============================-->
+                      <div class="modal" id="news-popup">
+                        <div class="modal-background"></div>
+                        <div class="modal-card">
+                          <header class="modal-card-head">
+                            <p class="modal-card-title">Modal title</p>
+                            <button class="delete" aria-label="close"></button>
+                          </header>
+                          <div class="modal-card-body">
+                            <div class="content description">
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quasi saepe voluptatum labore id quibusdam dolorum doloremque nulla tempore architecto, natus aspernatur quo obcaecati rem aliquid nobis inventore neque repudiandae?
+                            </div>
+                          </div>
+                          <div class="modal-card-body">
+                            <div class="content article hide">
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quasi saepe voluptatum labore id quibusdam dolorum doloremque nulla tempore architecto, natus aspernatur quo obcaecati rem aliquid nobis inventore neque repudiandae?
+                            </div>
+                          </div>
+                          
+                          <footer class="modal-card-foot">
+                            <a href="#" class="card-footer-item read-aloud">Play</a>
+                            <a href="#" class="card-footer-item">Link</a>
+                            <a href="#" class="card-footer-item">Favorite</a>
+                          </footer>
+                          
+                        </div><!--Modal card closing-->
+                      </div>
+                      
+                      <div>
+                        <button class="modal-close is-large" aria-label="close"></button>
+                      </div>
+<!-- ===============================mudal=======================modal========================================================= -->
+                  <footer class="card-footer">
+                    <a href="#" class="card-footer-item read-aloud">Play</a>
+                    <a href="#" class="js-modal-trigger card-footer-item" data-target="news-popup">Read more</a>
+                  </footer>
+                </div> <!--News cart containerc losing-->
+            </div>  <!-- Content (right side) Closing -->
+             
 
-            </div>
-          </div>
-          <!-- modal -->
-          <div class="modal" id="news-popup">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-              <header class="modal-card-head">
-                <p class="modal-card-title">Modal title</p>
-                <button class="delete" aria-label="close"></button>
-              </header>
-              <div class="modal-card-body">
-                <div id="readMore" class="content description">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quasi saepe voluptatum labore id
-                  quibusdam dolorum doloremque nulla tempore architecto, natus aspernatur quo obcaecati rem aliquid
-                  nobis inventore neque repudiandae?
-
-                </div>
-              </div>
-              <div class="modal-card-body">
-                <div class="content article hide">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quasi saepe voluptatum labore id
-                  quibusdam dolorum doloremque nulla tempore architecto, natus aspernatur quo obcaecati rem aliquid
-                  nobis inventore neque repudiandae?
-
-                </div>
-                <footer class="modal-card-foot">
-                  <a href="#" class="card-footer-item read-aloud">Play</a>
-                  <a href="#" class="card-footer-item">Link</a>
-                  <a href="#" class="card-footer-item">Favorite</a>
-                </footer>
-              </div>
-            </div>
-
-            <button class="modal-close is-large" aria-label="close"></button>
-          </div>
-          <!-- mudal -->
-          <footer class="card-footer">
-            <a href="#" class="card-footer-item read-aloud">Play</a>
-            <!-- <button class="js-modal-trigger" data-target="modal-js-example">
-                        Read More
-                      </button> -->
-            <a href="#" class="js-modal-trigger card-footer-item" data-target="news-popup">Read more</a>
-          </footer>
+   
         </div>
       </div>
 
