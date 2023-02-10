@@ -1,57 +1,66 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
-    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  </head>
-  <body>
-    <!-- hero -->
-    <section class="hero is-small is-primary">
-        <div class="hero-body">
-          <p class="title">
-            Send News
-          </p>
-          <!-- <p class="subtitle">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello Bulma!</title>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+
+<body>
+  <!-- hero -->
+  <section class="hero is-small is-primary">
+    <div class="hero-body">
+      <p class="title">
+        Send News
+      </p>
+      <!-- <p class="subtitle">
             sub title
           </p> -->
+    </div>
+  </section>
+  <!-- main body -->
+  <div class="columns">
+    <!-- aside (left side) -->
+    <div class="column is-3">
+      <!-- search box -->
+      <div class="box">
+        <div class="field">
+          <label class="label">Search News</label>
+          <div class="control">
+            <input class="input" id="searchString" type="text" placeholder="Key word">
+          </div>
         </div>
-    </section>
-    <!-- main body -->
-    <div class="columns">
-        <!-- aside (left side) -->
-        <div class="column is-3">
-            <!-- search box -->
-            <div class="box">
-                <div class="field">
-                    <label class="label">Search News</label>
-                    <div class="control">
-                      <input class="input" type="text" placeholder="Key word">
-                    </div>
-                </div>
 
-                <div class="field">
-                    <label class="label">Catagory</label>
-                    <div class="control">
-                        <div class="select">
-                            <select>
-                                <option>Select dropdown</option>
-                                <option>With options</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <button class="button is-primary">Search</button>
+        <div class="field">
+          <label class="label">Catagory</label>
+          <div class="control">
+            <div class="select">
+              <select id="selectCat">
+                <option>Select dropdown</option>
+                <option value="business">Business</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="general">General</option>
+                <option value="health">Health</option>
+                <option value="science">Science</option>
+                <option value="sports">Sports</option>
+                <option value="technology">Technology</option>
+              </select>
             </div>
-            <!-- searh box ends here -->
-            <!-- search history  -->
-             <label class="label">Favorite</label>
-            <div class="box favorite">
-                
-            </div>
+          </div>
         </div>
+        <button class="button is-primary" id="searchBtn">Search</button>
+      </div>
+      <!-- searh box ends here -->
+      <!-- search history  -->
+      <label class="label">Favorite</label>
+      <div class="box favorite">
+
+      </div>
+    </div>
+
 
        <!-- Content (right side) -->
         <div class="column is-9">
@@ -117,11 +126,17 @@
                 </div> <!--News cart containerc losing-->
             </div>  <!-- Content (right side) Closing -->
              
+
+   
         </div>
+      </div>
+
     </div>
+  </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="./assets/script.js"></script>  
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="./assets/script.js"></script>
 
-  </body>
+</body>
+
 </html>
