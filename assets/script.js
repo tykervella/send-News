@@ -79,19 +79,24 @@ fetch(req)
     })
 
     .then(function (data) {
-      
+       console.log(data);
 
         for (var i=0; i<data.articles.length; i++) {
 
             var title = data.articles[i].title
             var author = data.articles[i].author
             var content = data.articles[i].content
-            console.log(title,author,content)
+            var url=data.articles[i].url;
+            console.log(title,author,content,url)
         }
       });
 
 
 //This is function to read news everytime a read button is clicked more coments will be addid ========= Getnet's code starts here=============
+
+
+
+
 var read=document.querySelectorAll(".read-aloud");
 var newsAudio =new Audio();
 var audioUrl="";
@@ -99,11 +104,12 @@ var nxtAudioUrl="";
 var currntAudioIndex=0;
 var pausedAudioTime=0
 var newsAudioEnd=0;
-//This function will read aloud the content of news cadrd where clicked button located . content element will be selected based on parent of button and the child of that parent
+//This function will read aloud the content of news cadrd where clicked button located . content element will be selected based on parent of button and the child of that parent. The code is written to avoide 
 function readAloud() {
+  //Code inside this time interval will scane if playing is ended and change butten lebel to play
   setInterval(function() {
     console.log(newsAudioEnd);
-    if (newsAudio.currentTime>0 && newsAudio.currentTime==newsAudioEnd) {
+    if (newsAudio.currentTime>1 && newsAudio.currentTime==newsAudioEnd) {
       newsAudio.pause();
       read[currntAudioIndex].textContent='Play'
     }else{
@@ -113,6 +119,7 @@ function readAloud() {
     }
   }, 1000)
   
+  //listen to click event of all read aloud (play buttons and read dicreption and content of the news located in the parent-parent canrd of the cleckd buttons. Buttons are porgrammend to be used as togle switchs play/pouse.
   for (let i = 0; i < read.length; i++) {
      
     read[i].addEventListener("click", ()=>{
@@ -154,3 +161,4 @@ function readAloud() {
 }
 readAloud();
 //============================Getenet's code ends here===================================================
+
