@@ -190,8 +190,8 @@ document.getElementById("searchBtn").addEventListener("click", function () {
         var content = data.articles[i].content
         console.log(title, author, content)
 
-        // displays article fetched and displays to mainContent
-        // document.getElementById("mainContent").innerHTML += data.articles[i].content
+        // displays article fetched and displays to "mainContent"
+        document.getElementById("mainContent").innerHTML += data.articles[i].content;
       }
     });
 });
