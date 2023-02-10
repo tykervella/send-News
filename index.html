@@ -7,14 +7,15 @@
   <title>Hello Bulma!</title>
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="assets\style.css">
 </head>
 
 <body>
   <!-- hero -->
-  <section class="hero is-small is-primary">
+  <section class="hero is-small has-background-info is-bold">
     <div class="hero-body">
-      <p class="title">
-        Send News
+      <p id="hero-title" class="title has-text-white">
+        SEND NEWS
       </p>
       <!-- <p class="subtitle">
             sub title
@@ -24,20 +25,20 @@
   <!-- main body -->
   <div class="columns">
     <!-- aside (left side) -->
-    <div class="column is-3">
+    <div class="column is-3 m-3">
       <!-- search box -->
       <div class="box">
         <div class="field">
           <label class="label">Search News</label>
           <div class="control">
-            <input class="input" id="searchString" type="text" placeholder="Key word">
+            <input class="input" id="searchString" type="text" placeholder="Keyword">
           </div>
         </div>
 
         <div class="field">
-          <label class="label">Catagory</label>
+          <label class="label">Category</label>
           <div class="control">
-            <div class="select">
+            <div id="dropdown" class="select">
               <select id="selectCat">
                 <option>Select dropdown</option>
                 <option value="business">Business</option>
@@ -51,7 +52,7 @@
             </div>
           </div>
         </div>
-        <button class="button is-primary" id="searchBtn">Search</button>
+        <button id="search-btn" class="button has-background-info has-text-white" id="searchBtn">Search</button>
       </div>
       <!-- searh box ends here -->
       <!-- search history  -->

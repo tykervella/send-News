@@ -1,0 +1,22 @@
+#hero-title {
+    font-weight: 900;
+    font-size: 50px;
+    text-shadow: 0px 0px 10px #275c88;
+    margin: 5px;
+}
+
+.label {
+    text-align: center;
+}
+
+#dropdown {
+    width: 100%;
+}
+
+#selectCat {
+    width: 100%;
+}
+
+#search-btn {
+    width: 100%;
+}
