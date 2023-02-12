@@ -168,6 +168,29 @@ var countrystring = "country=" + country + "&"
 var searchinput = ""
 var category = "general"
 
+
+function getNews(searchvar,categoryvar) {
+  var searchstring = 'q=' + searchvar + '&'
+  var categorystring = "category=" + categoryvar + "&"
+  var topheadlinesurl = "https://newsapi.org/v2/top-headlines?" +
+  countrystring +
+  categorystring +
+  searchstring +
+  "pagesize=10&" +
+  "apiKey=9db76ac16d454b918d7c994623816b9b"
+  var req = new Request(topheadlinesurl);
+  fetch(req)
+  .then(function (response) {
+    return response.json();
+  })
+    .then(function (data) {
+      console.log(data.articles);
+      renderNews(data.articles);
+  });
+}
+getNews(searchinput,category);
+
+
 //=========================================================end of get news function========================
 
 var read=document.querySelectorAll(".read-aloud");
