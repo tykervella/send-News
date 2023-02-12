@@ -1,3 +1,19 @@
+var country = "us"
+var countrystring = "country=" + country + "&"
+var searchinput = ""
+var category = "general"
+
+var read=document.querySelectorAll(".read-aloud");
+var newsAudio =new Audio();
+var audioUrl="";
+var nxtAudioUrl="";
+var currntAudioIndex=0;
+var pausedAudioTime=0
+var newsAudioEnd=0;
+var newsCardsContainerDiv=document.querySelector('.newsCardsContainer')
+setTimeout(() => {
+  
+}, 2000);
 //The content of theis function except the time delay is copied from bulma css fream work to handle modal. This will be called every time page loads and every time page is updated up on new search . Time delay is needed to wait the all elements created and renderd before doing quiryslection.
 function activateModal() {
   setTimeout(function() {
@@ -59,7 +75,7 @@ activateModal();
 
 //This function will recive news array object , create cards for each news nad render it
 function renderNews(newsObjectArray) {
-  var newsCardsContainerDiv=document.querySelector('.newsCardsContainer');
+  newsCardsContainerDiv=document.querySelector('.newsCardsContainer');
   newsCardsContainerDiv.innerHTML="";
   for (let i = 0; i < newsObjectArray.length; i++) {
 
@@ -136,7 +152,7 @@ function renderNews(newsObjectArray) {
         modalFooterLink.textContent='Link';
         var modalFooterAddFavorite=document.createElement('a');
         modalFooterAddFavorite.setAttribute('href','#');
-        modalFooterAddFavorite.setAttribute('class','card-footer-item');
+        modalFooterAddFavorite.setAttribute('class','card-footer-item','addFavoriteBtn');
         modalFooterAddFavorite.textContent="Add To Favorite";
       modalFooter.append(modalFooterPlayBtn,modalFooterLink,modalFooterAddFavorite);
       modalCard.append(modalHeader,newsModalDescriptionContainer,newsModalContentContainer,modalFooter)
@@ -163,11 +179,6 @@ function renderNews(newsObjectArray) {
 }
 //=======================End of render function ===========================================================
 //=======================get news functin==============================================================
-var country = "us"
-var countrystring = "country=" + country + "&"
-var searchinput = ""
-var category = "general"
-
 
 function getNews(searchvar,categoryvar) {
   var searchstring = 'q=' + searchvar + '&'
@@ -190,16 +201,7 @@ function getNews(searchvar,categoryvar) {
 }
 getNews(searchinput,category);
 
-
 //=========================================================end of get news function========================
-
-var read=document.querySelectorAll(".read-aloud");
-var newsAudio =new Audio();
-var audioUrl="";
-var nxtAudioUrl="";
-var currntAudioIndex=0;
-var pausedAudioTime=0
-var newsAudioEnd=0;
 
 //This function will read aloud the content of news cadrd where clicked button located . content element will be selected based on parent of button and the child of that parent. The code is written to avoide 
 function readAloud() {
@@ -289,3 +291,6 @@ document.getElementById("searchBtn").addEventListener("click", function () {
    }, 2000)
   activateModal();
 });
+
+
+
