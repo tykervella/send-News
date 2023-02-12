@@ -20,3 +20,9 @@
 #search-btn {
     width: 100%;
 }
+.custum-modal-title{
+    width: 90%;
+}
+.hide{
+    display: none;
+}

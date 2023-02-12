@@ -4,13 +4,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hello Bulma!</title>
+  <title>send News</title>
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="assets\style.css">
+  
 </head>
 
 <body>
+  
   <!-- hero -->
   <section class="hero is-small has-background-info is-bold">
     <div class="hero-body">
@@ -40,10 +42,9 @@
           <div class="control">
             <div id="dropdown" class="select">
               <select id="selectCat">
-                <option>Select dropdown</option>
+                <option value="general">General</option>
                 <option value="business">Business</option>
                 <option value="entertainment">Entertainment</option>
-                <option value="general">General</option>
                 <option value="health">Health</option>
                 <option value="science">Science</option>
                 <option value="sports">Sports</option>
@@ -61,11 +62,11 @@
 
       </div>
     </div>
-
-
+    
+    <script src="./assets/script.js"></script>
        <!-- Content (right side) -->
         <div class="column is-9">
-            <div class="container ">
+            <div class="container newsCardsContainer">
                 <!-- news card -->
                 <div class="card">
                   <header class="card-header">
@@ -91,7 +92,7 @@
                         <div class="modal-background"></div>
                         <div class="modal-card">
                           <header class="modal-card-head">
-                            <p class="modal-card-title">Modal title</p>
+                            <p class="modal-card-title">Modal title </p>
                             <button class="delete" aria-label="close"></button>
                           </header>
                           <div class="modal-card-body">
@@ -101,34 +102,32 @@
                             </div>
                           </div>
                           <div class="modal-card-body">
-                            <div class="content article hide">
+                            <div class="content article hide">weather
                               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
                               Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quasi saepe voluptatum labore id quibusdam dolorum doloremque nulla tempore architecto, natus aspernatur quo obcaecati rem aliquid nobis inventore neque repudiandae?
                             </div>
                           </div>
                           
                           <footer class="modal-card-foot">
-                            <a href="#" class="card-footer-item read-aloud">Play</a>
+                            <a href="#"class="card-footer-item read-aloud">Play</a>
                             <a href="#" class="card-footer-item">Link</a>
                             <a href="#" class="card-footer-item">Favorite</a>
                           </footer>
                           
-                        </div><!--Modal card closing-->
+                        </div>
+                        <!--Modal card closing-->
                       </div>
                       
-                      <div>
-                        <button class="modal-close is-large" aria-label="close"></button>
-                      </div>
 <!-- ===============================mudal=======================modal========================================================= -->
                   <footer class="card-footer">
                     <a href="#" class="card-footer-item read-aloud">Play</a>
                     <a href="#" class="js-modal-trigger card-footer-item" data-target="news-popup">Read more</a>
                   </footer>
-                </div> <!--News cart containerc losing-->
-            </div>  <!-- Content (right side) Closing -->
+                </div> 
+                <!--News card containerc losing-->
+            </div>  
+            <!-- Content (right side) Closing -->
              
-
-   
         </div>
       </div>
 
@@ -136,7 +135,7 @@
   </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="./assets/script.js"></script>
+  <!-- <script src="./assets/script.js"></script> -->
 
 </body>
 
