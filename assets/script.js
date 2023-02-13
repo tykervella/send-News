@@ -1,3 +1,21 @@
+var country = "us"
+var countrystring = "country=" + country + "&"
+var searchinput = ""
+var category = "general"
+
+var read=document.querySelectorAll(".read-aloud");
+var newsAudio =new Audio();
+var audioUrl="";
+var nxtAudioUrl="";
+var currntAudioIndex=0;
+var pausedAudioTime=0
+var newsAudioEnd=0;
+var newsCardsContainerDiv=document.querySelector('.newsCardsContainer');
+var addToFavoriteBtns=document.querySelectorAll('.addFavoriteBtn');
+setTimeout(() => {
+  addToFavoriteBtns=document.querySelectorAll('.addFavoriteBtn');
+  console.log(addToFavoriteBtns, "favorite dly");
+}, 2000);
 //The content of theis function except the time delay is copied from bulma css fream work to handle modal. This will be called every time page loads and every time page is updated up on new search . Time delay is needed to wait the all elements created and renderd before doing quiryslection.
 function activateModal() {
   setTimeout(function() {
@@ -59,7 +77,7 @@ activateModal();
 
 //This function will recive news array object , create cards for each news nad render it
 function renderNews(newsObjectArray) {
-  var newsCardsContainerDiv=document.querySelector('.newsCardsContainer');
+  newsCardsContainerDiv=document.querySelector('.newsCardsContainer');
   newsCardsContainerDiv.innerHTML="";
   for (let i = 0; i < newsObjectArray.length; i++) {
 
@@ -71,7 +89,6 @@ function renderNews(newsObjectArray) {
     var newsCardHeaderTitle=document.createElement('p');
     newsCardHeaderTitle.textContent=newsObjectArray[i].title;
     newsCardHeaderTitle.classList.add('card-header-title');
-
 
     newsCardHeader.append(newsCardHeaderTitle); //title is apended to header
   
@@ -136,7 +153,7 @@ function renderNews(newsObjectArray) {
         modalFooterLink.textContent='Link';
         var modalFooterAddFavorite=document.createElement('a');
         modalFooterAddFavorite.setAttribute('href','#');
-        modalFooterAddFavorite.setAttribute('class','card-footer-item');
+        modalFooterAddFavorite.classList.add('card-footer-item','addFavoriteBtn');
         modalFooterAddFavorite.textContent="Add To Favorite";
       modalFooter.append(modalFooterPlayBtn,modalFooterLink,modalFooterAddFavorite);
       modalCard.append(modalHeader,newsModalDescriptionContainer,newsModalContentContainer,modalFooter)
@@ -163,11 +180,6 @@ function renderNews(newsObjectArray) {
 }
 //=======================End of render function ===========================================================
 //=======================get news functin==============================================================
-var country = "us"
-var countrystring = "country=" + country + "&"
-var searchinput = ""
-var category = "general"
-
 
 function getNews(searchvar,categoryvar) {
   var searchstring = 'q=' + searchvar + '&'
@@ -190,16 +202,7 @@ function getNews(searchvar,categoryvar) {
 }
 getNews(searchinput,category);
 
-
 //=========================================================end of get news function========================
-
-var read=document.querySelectorAll(".read-aloud");
-var newsAudio =new Audio();
-var audioUrl="";
-var nxtAudioUrl="";
-var currntAudioIndex=0;
-var pausedAudioTime=0
-var newsAudioEnd=0;
 
 //This function will read aloud the content of news cadrd where clicked button located . content element will be selected based on parent of button and the child of that parent. The code is written to avoide 
 function readAloud() {
@@ -226,15 +229,15 @@ function readAloud() {
       
       read[i].addEventListener("click", ()=>{
           
-        var newsDiscription=read[i].parentElement.parentElement.children[1].children[0].textContent.trim()+"    ";
+        var newsDescription=read[i].parentElement.parentElement.children[1].children[0].textContent.trim()+"    ";
         var newsContent=read[i].parentElement.parentElement.children[2].children[0].textContent.trim();
-        nxtAudioUrl="http://api.voicerss.org/?key=e25d609815964af58977c036e5460b2b&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+ newsDiscription + newsContent;
+        nxtAudioUrl="http://api.voicerss.org/?key=e25d609815964af58977c036e5460b2b&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+ newsDescription + newsContent;
         console.log(nxtAudioUrl, "next");
         console.log(audioUrl,"current");
         if (nxtAudioUrl===audioUrl||audioUrl==="") {
           console.log(newsAudio);
           if (newsAudio.paused) {
-            audioUrl="http://api.voicerss.org/?key=e25d609815964af58977c036e5460b2b&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+newsDiscription + newsContent;
+            audioUrl="http://api.voicerss.org/?key=e25d609815964af58977c036e5460b2b&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+newsDescription + newsContent;
             currntAudioIndex=i;
             newsAudio =new Audio(audioUrl);
 
@@ -252,7 +255,7 @@ function readAloud() {
           newsAudio.pause();
           read[currntAudioIndex].textContent='Play'
           
-          audioUrl="http://api.voicerss.org/?key=e25d609815964af58977c036e5460b2b&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+newsDiscription + newsContent;
+          audioUrl="http://api.voicerss.org/?key=e25d609815964af58977c036e5460b2b&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+newsDescription + newsContent;
           currntAudioIndex=i;
           newsAudio =new Audio(audioUrl);
 
@@ -289,3 +292,48 @@ document.getElementById("searchForm").addEventListener("submit", function () {
    }, 2000)
   activateModal();
 });
+
+//this function will listen to all add to favorite buttons and save the news object from the card wher the button belongs to.
+function addTofavorite () {
+  setTimeout(() => {
+  
+ 
+    var savedFavorite=[];
+     
+    if (JSON.parse(localStorage.getItem('savedNews'))) {
+      savedFavorite=JSON.parse(localStorage.getItem('savedNews'));
+      console.log(savedFavorite,"1");
+    }
+    var newsObject={
+      title:"",
+      description:"",
+      content:"",
+      url:""
+    }
+    for (let i = 0; i < addToFavoriteBtns.length; i++) {
+      addToFavoriteBtns[i].addEventListener('click', ()=>{
+        newsObject.title=addToFavoriteBtns[i].parentElement.parentElement.children[0].children[0].textContent;
+        newsObject.description=addToFavoriteBtns[i].parentElement.parentElement.children[1].children[0].textContent;
+        newsObject.content=addToFavoriteBtns[i].parentElement.parentElement.children[2].children[0].textContent;
+        newsObject.url=addToFavoriteBtns[i].parentElement.children[1].getAttribute('href');
+        var newsIsInstorage=0;
+        for (let j = 0; j < savedFavorite.length; j++) {
+          if (JSON.stringify(savedFavorite[i])===JSON.stringify(newsObject)) {
+            newsIsInstorage=1;
+            console.log(newsIsInstorage,"instorage")
+          }
+        }
+        if (newsIsInstorage===0) {
+          //savedFavorite.push(newsObject);
+          localStorage.setItem("savedNews",JSON.stringify(savedFavorite.push(newsObject)));
+        console.log("news saved")
+        }
+        console.log(savedFavorite,"2");
+      })
+    }
+    console.log("I am clicked)")
+  }, 2000);
+}
+addTofavorite();
+
+
