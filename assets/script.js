@@ -274,7 +274,7 @@ setTimeout(function() {
  }, 2000)
 
 //add event listener to searchBtn and runs function when clicked
-document.getElementById("searchBtn").addEventListener("click", function () {
+document.getElementById("searchForm").addEventListener("submit", function () {
   console.log(document.getElementById("searchString").value);
   console.log(document.getElementById("selectCat").value);
 
