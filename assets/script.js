@@ -294,7 +294,7 @@ document.getElementById("searchBtn").addEventListener("click", function () {
 });
 
 //this function will listen to all add to favorite buttons and save the news object from the card wher the button belongs to.
-function addToforite () {
+function addTofavorite () {
   setTimeout(() => {
   
  
@@ -334,6 +334,6 @@ function addToforite () {
     console.log("I am clicked)")
   }, 2000);
 }
-addToforite();
+addTofavorite();
 
 
