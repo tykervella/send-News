@@ -8,9 +8,13 @@ Send News is a news article search application.  Use the search and categories f
 2. Fill in the Search and choose the category
 3. Click the ReadMore to extend the article on the modal.
 4. Choose from 3 options located in our modal:
+
     -Play- The TTS (text-To-speach) will read the news to you.
+
     -Link- Takes you to the source of the article displayed.
+
     -Add To Favorite- Save the article you like to revisit it later.
+    
 
 ## Collaborators:
 <a href="https://github.com/Getnetgit">Getnet Ali</a> 
