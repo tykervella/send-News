@@ -1,7 +1,9 @@
 var country = "us"
 var countrystring = "country=" + country + "&"
 var searchinput = ""
-var category = "general"
+//var category = "general"
+var category="top";
+var delaytime=10000;
 
 var read=document.querySelectorAll(".read-aloud");
 var newsAudio =new Audio();
@@ -12,13 +14,13 @@ var pausedAudioTime=0
 var newsAudioEnd=0;
 var newsCardsContainerDiv=document.querySelector('.newsCardsContainer');
 var addToFavoriteBtns=document.querySelectorAll('.addFavoriteBtn');
-setTimeout(() => {
-  addToFavoriteBtns=document.querySelectorAll('.addFavoriteBtn');
-  console.log(addToFavoriteBtns, "favorite dly");
-}, 2000);
+// setTimeout(() => {
+//   addToFavoriteBtns=document.querySelectorAll('.addFavoriteBtn');
+//   console.log(addToFavoriteBtns, "favorite dly");
+// }, delaytime);
 //The content of theis function except the time delay is copied from bulma css fream work to handle modal. This will be called every time page loads and every time page is updated up on new search . Time delay is needed to wait the all elements created and renderd before doing quiryslection.
 function activateModal() {
-  setTimeout(function() {
+  // setTimeout(function() {
     // Functions to open and close a modal
     function openModal($el) {
       $el.classList.add('is-active');
@@ -66,13 +68,13 @@ function activateModal() {
         closeAllModals();
       }
     });
-  },2000);    
+  // },delaytime);    
 }
 //activate modal function called upon page loading
 //document.addEventListener('DOMContentLoaded', () => {
  // activateModal();
 //});
-activateModal();
+// activateModal();
 // ===========================Modal code end ==============================================================
 
 //This function will recive news array object , create cards for each news nad render it
@@ -148,7 +150,7 @@ function renderNews(newsObjectArray) {
         modalFooterPlayBtn.classList.add('card-footer-item','read-aloud');
         modalFooterPlayBtn.textContent="Play";
         var modalFooterLink=document.createElement('a');
-        modalFooterLink.setAttribute('href',newsObjectArray[i].url);
+        modalFooterLink.setAttribute('href',newsObjectArray[i].link);
         modalFooterLink.setAttribute('class','card-footer-item')
         modalFooterLink.textContent='Link';
         var modalFooterAddFavorite=document.createElement('a');
@@ -182,22 +184,25 @@ function renderNews(newsObjectArray) {
 //=======================get news functin==============================================================
 
 function getNews(searchvar,categoryvar) {
-  var searchstring = 'q=' + searchvar + '&'
+  var searchstring = 'q=' + searchvar;
   var categorystring = "category=" + categoryvar + "&"
-  var topheadlinesurl = "https://newsapi.org/v2/top-headlines?" +
-  countrystring +
+  // var topheadlinesurl = "https://newsdata.io/api/1/news?apikey=pub_1711050ac401fa9680409c60adde4a8fbebd3&country=us&language=en&" +
+  var topheadlinesurl = "https://newsdata.io/api/1/news?apikey=pub_17118eb2cf9a3541d78d57d33fb7cb8d1ada8&country=us&language=en&" +
   categorystring +
-  searchstring +
-  "pagesize=10&" +
-  "apiKey=9db76ac16d454b918d7c994623816b9b"
+  searchstring ;
   var req = new Request(topheadlinesurl);
   fetch(req)
   .then(function (response) {
     return response.json();
   })
     .then(function (data) {
-      console.log(data.articles);
-      renderNews(data.articles);
+      console.log(data.results);
+      renderNews(data.results);
+      activateModal();
+      read=document.querySelectorAll(".read-aloud");
+      addToFavoriteBtns=document.querySelectorAll('.addFavoriteBtn');
+      readAloud();
+      addTofavorite();
   });
 }
 getNews(searchinput,category);
@@ -219,7 +224,7 @@ function readAloud() {
       }else{
         newsAudioEnd=newsAudio.currentTime;
       
-        console.log(newsAudio);
+       // console.log(newsAudio);
       }
     }, 1000)
 
@@ -230,7 +235,8 @@ function readAloud() {
       read[i].addEventListener("click", ()=>{
           
         var newsDescription=read[i].parentElement.parentElement.children[1].children[0].textContent.trim()+"    ";
-        var newsContent=read[i].parentElement.parentElement.children[2].children[0].textContent.trim();
+        //var newsContent=read[i].parentElement.parentElement.children[2].children[0].textContent.trim();
+        var newsContent="";
         nxtAudioUrl="http://api.voicerss.org/?key=e25d609815964af58977c036e5460b2b&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+ newsDescription + newsContent;
         console.log(nxtAudioUrl, "next");
         console.log(audioUrl,"current");
@@ -270,34 +276,32 @@ function readAloud() {
 }
 //=================================end of read aloud function============================================================================
 //=================================time delay to wait for element to render before selecting elements to listen to events===================================
-setTimeout(function() {
-  read=document.querySelectorAll(".read-aloud");
-  console.log(read);
-  readAloud();
- }, 2000)
+// setTimeout(function() {
+//   read=document.querySelectorAll(".read-aloud");
+//   console.log(read);
+//   readAloud();
+//  }, delaytime)
 
 //add event listener to searchBtn and runs function when clicked
-document.getElementById("searchForm").addEventListener("submit", function () {
+document.getElementById("searchForm").addEventListener("submit", function (event) {
   console.log(document.getElementById("searchString").value);
   console.log(document.getElementById("selectCat").value);
-
+   event.preventDefault();
   searchinput = document.getElementById("searchString").value
   category = document.getElementById("selectCat").value
   
   getNews(searchinput, category);
-  setTimeout(function() {
-    read=document.querySelectorAll(".read-aloud");
-    console.log(read);
-    readAloud();
-   }, 2000)
-  activateModal();
+  // setTimeout(function() {
+  //   read=document.querySelectorAll(".read-aloud");
+  //   console.log(read);
+  //   readAloud();
+  //  }, 2000)
+  // activateModal();
 });
 
 //this function will listen to all add to favorite buttons and save the news object from the card wher the button belongs to.
 function addTofavorite () {
-  setTimeout(() => {
-  
- 
+  // setTimeout(() => {
     var savedFavorite=[];
      
     if (JSON.parse(localStorage.getItem('savedNews'))) {
@@ -308,32 +312,32 @@ function addTofavorite () {
       title:"",
       description:"",
       content:"",
-      url:""
+      link:""
     }
     for (let i = 0; i < addToFavoriteBtns.length; i++) {
       addToFavoriteBtns[i].addEventListener('click', ()=>{
         newsObject.title=addToFavoriteBtns[i].parentElement.parentElement.children[0].children[0].textContent;
         newsObject.description=addToFavoriteBtns[i].parentElement.parentElement.children[1].children[0].textContent;
         newsObject.content=addToFavoriteBtns[i].parentElement.parentElement.children[2].children[0].textContent;
-        newsObject.url=addToFavoriteBtns[i].parentElement.children[1].getAttribute('href');
+        newsObject.link=addToFavoriteBtns[i].parentElement.children[1].getAttribute('href');
         var newsIsInstorage=0;
         for (let j = 0; j < savedFavorite.length; j++) {
-          if (JSON.stringify(savedFavorite[i])===JSON.stringify(newsObject)) {
+          if (JSON.stringify(savedFavorite[j])===JSON.stringify(newsObject)) {
             newsIsInstorage=1;
             console.log(newsIsInstorage,"instorage")
+             console.log(newsObject);
           }
         }
         if (newsIsInstorage===0) {
-          //savedFavorite.push(newsObject);
-          localStorage.setItem("savedNews",JSON.stringify(savedFavorite.push(newsObject)));
+          savedFavorite.push(newsObject);
+          localStorage.setItem("savedNews",JSON.stringify(savedFavorite));
         console.log("news saved")
         }
         console.log(savedFavorite,"2");
       })
     }
     console.log("I am clicked)")
-  }, 2000);
+  // }, delaytime);
 }
-addTofavorite();
 
-
+//Add event listner to clear favorite button which will cleare lcal storage and call render favorite function to cleare it from the page.
