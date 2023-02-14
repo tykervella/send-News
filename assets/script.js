@@ -205,7 +205,32 @@ function getNews(searchvar,categoryvar) {
       addTofavorite();
   });
 }
+
 getNews(searchinput,category);
+
+
+// needs a string input (data.results[i].content) to take the content of article and break it into 4 parts 
+function splitArticle(articlestring) {
+  
+  var sentences = articlestring.split(".");
+  var sentencesL = sentences.length
+
+  var partSize = Math.floor(sentencesL / 4);
+  var part1 = sentences.slice(0, partSize);
+  var part2 = sentences.slice(partSize, partSize * 2);
+  var part3 = sentences.slice(partSize * 2, partSize * 3);
+  var part4 = sentences.slice(partSize * 3);
+
+  var contentParts = [
+    part1.join(""), // concatenate part 1 into a single string
+    part2.join(""), // concatenate part 2 into a single string
+    part3.join(""), // concatenate part 3 into a single string
+    part4.join(""), // concatenate part 4 into a single string
+  ];
+
+  console.log(contentParts);
+
+}
 
 //=========================================================end of get news function========================
 
