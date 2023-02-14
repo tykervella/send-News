@@ -22,7 +22,11 @@ Send News is a news article search application.  Use the search and categories f
 <a href="https://github.com/xKranze">Jimmy Yin</a>
 ## Credits:
 -UW Coding Bootcamp
+
 -https://www.voicerss.org/api/
+
 -https://newsdata.io/documentation/
+
 -https://bulma.io/documentation/
+
 -https://jquery.com/
