@@ -1,7 +1,3 @@
-# send-News
-Project1 for UW coding bootcamp. Grabs local news and reads it aloud 
-
-
 # Send News
 ![Website preview](./assets/preview.png)
 ![Modal preview](./assets/preview2.png)
@@ -17,9 +13,12 @@ Send News is a news article search application.  Use the search and categories f
     -Add To Favorite- Save the article you like to revisit it later.
 
 ## Collaborators:
-<a href="https://github.com/Getnetgit">Getnet Ali</a>
-<a href="https://github.com/tykervella">Tyler Kervella</a>
-<a href="https://github.com/masonuw">Mason Cox</a>
+<a href="https://github.com/Getnetgit">Getnet Ali</a> 
+
+<a href="https://github.com/tykervella">Tyler Kervella</a> 
+
+<a href="https://github.com/masonuw">Mason Cox</a> 
+
 <a href="https://github.com/xKranze">Jimmy Yin</a>
 ## Credits:
 -UW Coding Bootcamp
