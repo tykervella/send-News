@@ -329,8 +329,8 @@ function splitTitle(articletitle) {
   var titlesplit = articletitle.split(" ");
   var titlelength = titlesplit.length ;
   var titlename = "";
-  if (titlelength > 2  ) {
-      titlesplit = [titlesplit[0], titlesplit[1], "..." ];
+  if (titlelength > 3  ) {
+    titlesplit = [titlesplit[0], titlesplit[1], titlesplit[2], "..." ];
       titlesplit = titlesplit.join(" ");
   } else {
       titlesplit = titlesplit.join(" ")
