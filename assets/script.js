@@ -203,6 +203,7 @@ function renderNews(newsObjectArray) {
 //       addToFavoriteBtns=document.querySelectorAll('.addFavoriteBtn');
 //       readAloud();
 //       addTofavorite();
+//       clearFaborites();
 //   });
 // }
 function getNews(searchvar,categoryvar) {
@@ -220,7 +221,9 @@ function getNews(searchvar,categoryvar) {
    addToFavoriteBtns=document.querySelectorAll('.addFavoriteBtn');
    readAloud();
    addTofavorite();
+   clearFaborits();
    }, delaytime);
+
 }
 
 getNews(searchinput,category);
@@ -414,6 +417,7 @@ function addTofavorite () {
         console.log("news saved")
         }
         console.log(savedFavorite,"2");
+        renderFavorites();
       })
     }
     console.log("I am clicked)")
@@ -422,4 +426,12 @@ function addTofavorite () {
 }
 
 //Add event listner to clear favorite button which will cleare lcal storage and call render favorite function to cleare it from the page.
-
+function clearFaborits(){
+  var clearFabBtn=document.querySelector('.clearFabBtn');
+  clearFabBtn.addEventListener("click",()=>{
+    localStorage.removeItem("savedNews")
+    var favoriteContainerDiv = document.querySelector('.favorite');
+    favoriteContainerDiv.innerHTML ="";
+    console.log("I am cleared")
+  })
+}
