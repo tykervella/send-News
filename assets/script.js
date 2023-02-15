@@ -324,20 +324,41 @@ document.getElementById("searchForm").addEventListener("submit", function (event
   // activateModal();
 });
 
+// Function to split titles to shorter titles in favorites tab
+function splitTitle(articletitle) {
+  var titlesplit = articletitle.split(" ");
+  var titlelength = titlesplit.length ;
+  var titlename = "";
+  if (titlelength > 2  ) {
+      titlesplit = [titlesplit[0], titlesplit[1], "..." ];
+      titlesplit = titlesplit.join(" ");
+  } else {
+      titlesplit = titlesplit.join(" ")
+  }
+  return titlesplit;
+}
+
 // Function to render favorites to page under Favorites tab
 function renderFavorites() {
+  var favoriteContainerDiv = document.querySelector('.favorite');
+  favoriteContainerDiv.innerHTML = "";
   var savedFavs = localStorage.getItem("savedNews");
   var parsedFavs = JSON.parse(savedFavs);
 
-  for (let i = 0; i < parsedFavs[i].title.length; i++) {
-    var favbox = document.getElementById('fav-box');
-    var box = favbox.createElement('article-fav');
-    
-    box.classList.add('box');
-    box.classList.add('favorite');
-    box.innerHTML = parsedFavs[i];
+  for (let i = 0; i < parsedFavs.length; i++) {
+    var favoriteLinkDiv = document.createElement('a');
+      favoriteLinkDiv.classList.add('favoriteLinks');
 
-    console.log('Rendered!')
+      var favoriteDelBtn = document.createElement('button');
+      favoriteDelBtn.classList.add('delBtn');
+      favoriteDelBtn.textContent = '-';
+      favoriteLinkDiv.append(favoriteDelBtn);
+      
+      favoriteLinkDiv.textContent = splitTitle(parsedFavs[i].title);
+      favoriteContainerDiv.append(favoriteLinkDiv);
+      
+      console.log(parsedFavs[i].title)
+      console.log('Rendered!')
   }
 }
 
