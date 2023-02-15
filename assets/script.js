@@ -347,7 +347,7 @@ function renderFavorites() {
 
   for (let i = 0; i < parsedFavs.length; i++) {
     var favoriteLinkDiv = document.createElement('a');
-      favoriteLinkDiv.classList.add('favoriteLinks');
+      favoriteLinkDiv.classList.add('favoriteLinks', 'column');
 
       var favoriteDelBtn = document.createElement('button');
       favoriteDelBtn.classList.add('delBtn');
@@ -405,3 +405,8 @@ function addTofavorite () {
 }
 
 //Add event listner to clear favorite button which will cleare lcal storage and call render favorite function to cleare it from the page.
+
+// Day.js to add current date to top of page underneath logo
+var currentDayHeader = document.getElementById('day-subtitle');
+var dayJSScript = dayjs().format('dddd, MMMM D, YYYY');
+currentDayHeader.textContent = 'Today is ' + dayJSScript + '.';
