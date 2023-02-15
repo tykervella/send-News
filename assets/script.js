@@ -187,7 +187,7 @@ function getNews(searchvar,categoryvar) {
   var searchstring = 'q=' + searchvar;
   var categorystring = "category=" + categoryvar + "&"
   // var topheadlinesurl = "https://newsdata.io/api/1/news?apikey=pub_1711050ac401fa9680409c60adde4a8fbebd3&country=us&language=en&" +
-  var topheadlinesurl = "https://newsdata.io/api/1/news?apikey=pub_17118eb2cf9a3541d78d57d33fb7cb8d1ada8&country=us&language=en&" +
+  var topheadlinesurl = "https://newsdata.io/api/1/news?apikey=pub_1711050ac401fa9680409c60adde4a8fbebd3&country=us&language=en&" +
   categorystring +
   searchstring ;
   var req = new Request(topheadlinesurl);
@@ -274,7 +274,7 @@ function readAloud() {
 
             newsAudio.play();
             newsAudio.currentTime = pausedAudioTime;
-            read[i].textContent = "Pouse";
+            read[i].textContent = "Pause";
           } else {
             newsAudio.pause();
 
@@ -292,7 +292,7 @@ function readAloud() {
 
           newsAudio.play();
 
-          read[i].textContent = "Pouse";
+          read[i].textContent = "Pause";
         }
       });
 
@@ -323,6 +323,23 @@ document.getElementById("searchForm").addEventListener("submit", function (event
   //  }, 2000)
   // activateModal();
 });
+
+// Function to render favorites to page under Favorites tab
+function renderFavorites() {
+  var savedFavs = localStorage.getItem("savedNews");
+  var parsedFavs = JSON.parse(savedFavs);
+
+  for (let i = 0; i < parsedFavs[i].title.length; i++) {
+    var favbox = document.getElementById('fav-box');
+    var box = favbox.createElement('article-fav');
+    
+    box.classList.add('box');
+    box.classList.add('favorite');
+    box.innerHTML = parsedFavs[i];
+
+    console.log('Rendered!')
+  }
+}
 
 //this function will listen to all add to favorite buttons and save the news object from the card wher the button belongs to.
 function addTofavorite () {
@@ -363,6 +380,7 @@ function addTofavorite () {
     }
     console.log("I am clicked)")
   // }, delaytime);
+  renderFavorites();
 }
 
 //Add event listner to clear favorite button which will cleare lcal storage and call render favorite function to cleare it from the page.
