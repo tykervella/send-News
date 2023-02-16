@@ -347,6 +347,7 @@ function renderFavorites() {
   var parsedFavs = JSON.parse(savedFavs);
 
   for (let i = 0; i < parsedFavs.length; i++) {
+
     var favoriteLink = document.createElement('a');
       favoriteLink.classList.add('favoriteLinks','column');
       favoriteLink.setAttribute('href',parsedFavs[i].link)
@@ -355,6 +356,8 @@ function renderFavorites() {
       // favoriteDelBtn.classList.add('delBtn');
       // favoriteDelBtn.textContent = '-';
       // favoriteLinkDiv.append(favoriteDelBtn);
+
+
       
       favoriteLink.textContent = splitTitle(parsedFavs[i].title);
       favoriteContainerDiv.append(favoriteLink);
@@ -408,6 +411,7 @@ function addTofavorite () {
 }
 
 //Add event listner to clear favorite button which will cleare lcal storage and call render favorite function to cleare it from the page.
+
 function clearFaborits(){
   var clearFabBtn=document.querySelector('.clearFabBtn');
   clearFabBtn.addEventListener("click",()=>{
@@ -417,3 +421,9 @@ function clearFaborits(){
     console.log("I am cleared")
   })
 }
+
+// Day.js to add current date to top of page underneath logo
+var currentDayHeader = document.getElementById('day-subtitle');
+var dayJSScript = dayjs().format('dddd, MMMM D, YYYY');
+currentDayHeader.textContent = 'Today is ' + dayJSScript + '.';
+
