@@ -1,9 +1,13 @@
+// global variables defined to render the webpage with a search for top news with no search input
+
 var country = "us"
 var countrystring = "country=" + country + "&"
 var searchinput = ""
 
 var category="top";
 var delaytime=2000;
+
+// global variables defined to use throughout the code 
 
 var read=document.querySelectorAll(".read-aloud");
 var newsAudio =new Audio();
@@ -17,6 +21,7 @@ var addToFavoriteBtns=document.querySelectorAll('.addFavoriteBtn');
 
 //   console.log(addToFavoriteBtns, "favorite dly");
 // }, delaytime);
+
 //The content of theis function except the time delay is copied from bulma css fream work to handle modal. This will be called every time page loads and every time page is updated up on new search . Time delay is needed to wait the all elements created and renderd before doing quiryslection.
 function activateModal() {
     
@@ -154,7 +159,7 @@ function renderNews(newsObjectArray) {
       modalFooter.append(modalFooterPlayBtn,modalFooterLink,modalFooterAddFavorite);
       modalCard.append(modalHeader,newsModalDescriptionContainer,newsModalContentContainer,modalFooter)
       modalContainerDiv.append(modalCbackgroundDiv,modalCard);
-   //crating modal edns here========================================
+   //crating modal ends here========================================
    var newsCardFooter=document.createElement('footer');
    newsCardFooter.classList.add('card-footer');
         var newsCardFooterPlayBtn=document.createElement('a');
@@ -165,7 +170,7 @@ function renderNews(newsObjectArray) {
         //newsCardFooterReadMor.setAttribute('href','#');
         newsCardFooterReadMor.classList.add("card-footer-item","js-modal-trigger");
         newsCardFooterReadMor.setAttribute('data-target','news-popup'+i);
-        newsCardFooterReadMor.textContent="ReadMore";
+        newsCardFooterReadMor.textContent="Read More";
 
   newsCardFooter.append(newsCardFooterPlayBtn,newsCardFooterReadMor);
 
@@ -175,8 +180,10 @@ function renderNews(newsObjectArray) {
   }
 }
 //=======================End of render function ===========================================================
-//=======================get news functin==============================================================
+//=======================get news function==============================================================
 
+
+// function to call the api and get the various news articles. Takes in a search variable and category variable to filter the type of news that will be searched
 function getNews(searchvar,categoryvar) {
   var searchstring = 'q=' + searchvar;
   var categorystring = "category=" + categoryvar + "&"
@@ -189,22 +196,26 @@ function getNews(searchvar,categoryvar) {
   .then(function (response) {
     return response.json();
   })
+  //calls various functions that will 
     .then(function (data) {
       console.log(data.results);
       renderNews(data.results);
       activateModal();
       read=document.querySelectorAll(".read-aloud");
       addToFavoriteBtns=document.querySelectorAll('.addFavoriteBtn');
-      readAloud();
+      readAloud();  
       addTofavorite();
       clearFaborits();
   });
 }
 
+// initial call of the function to display top news with no search input 
 getNews(searchinput,category);
 
 
-// needs a string input (data.results[i].content) to take the content of article and break it into 4 parts 
+// needs a string input (data.results[i].content) to take the content of article and break it into 4 parts. 
+// not actually ever called, possible future development direction 
+
 function splitArticle(articlestring,sentencesQty) {
   var firstPart=[];
   var sentences = articlestring.split(".");
@@ -221,11 +232,11 @@ function splitArticle(articlestring,sentencesQty) {
 
 //=========================================================end of get news function========================
 
-//This function will read aloud the content of news cadrd where clicked button located . content element will be selected based on parent of button and the child of that parent. The code is written to avoide 
+//This function will read aloud the content of news cadrd where clicked button located . content element will be selected based on parent of button and the child of that parent. The code is written to avoid 
 function readAloud() {
   
     console.log(read);
-    //Code inside this time interval will scane if playing is ended and change butten lebel to play
+    //Code inside this time interval will scan if playing is ended and change butten lebel to play
 
     setInterval(function() {
       
@@ -241,7 +252,7 @@ function readAloud() {
     }, 1000)
    
     
-    //listen to click event of all read aloud (play buttons and read dicreption and content of the news located in the parent-parent canrd of the cleckd buttons. Buttons are porgrammend to be used as togle switchs play/pouse.
+    //listen to click event of all read aloud (play buttons and read dicreption and content of the news located in the parent-parent card of the clicked buttons. Buttons are programmend to be used as toggle switchs play/pause.
     for (let i = 0; i < read.length; i++) {
       
       read[i].addEventListener("click", ()=>{
@@ -386,7 +397,7 @@ function addTofavorite () {
   renderFavorites();
 }
 
-//Add event listner to clear favorite button which will cleare lcal storage and call render favorite function to cleare it from the page.
+//Add event listner to clear favorite button which will cleare local storage and call render favorite function to cleare it from the page.
 
 function clearFaborits(){
   var clearFabBtn=document.querySelector('.clearFabBtn');
