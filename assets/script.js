@@ -1,7 +1,7 @@
 var country = "us"
 var countrystring = "country=" + country + "&"
 var searchinput = ""
-//var category = "general"
+
 var category="top";
 var delaytime=2000;
 
@@ -14,14 +14,12 @@ var pausedAudioTime=0
 var newsAudioEnd=0;
 var newsCardsContainerDiv=document.querySelector('.newsCardsContainer');
 var addToFavoriteBtns=document.querySelectorAll('.addFavoriteBtn');
-// setTimeout(() => {
-//   addToFavoriteBtns=document.querySelectorAll('.addFavoriteBtn');
+
 //   console.log(addToFavoriteBtns, "favorite dly");
 // }, delaytime);
 //The content of theis function except the time delay is copied from bulma css fream work to handle modal. This will be called every time page loads and every time page is updated up on new search . Time delay is needed to wait the all elements created and renderd before doing quiryslection.
 function activateModal() {
-  // setTimeout(function() {
-    // Functions to open and close a modal
+    
     function openModal($el) {
       $el.classList.add('is-active');
     }
@@ -68,13 +66,9 @@ function activateModal() {
         closeAllModals();
       }
     });
-  // },delaytime);    
+     
 }
-//activate modal function called upon page loading
-//document.addEventListener('DOMContentLoaded', () => {
- // activateModal();
-//});
-// activateModal();
+
 // ===========================Modal code end ==============================================================
 
 //This function will recive news array object , create cards for each news nad render it
@@ -211,26 +205,18 @@ getNews(searchinput,category);
 
 
 // needs a string input (data.results[i].content) to take the content of article and break it into 4 parts 
-function splitArticle(articlestring) {
-  
+function splitArticle(articlestring,sentencesQty) {
+  var firstPart=[];
   var sentences = articlestring.split(".");
   var sentencesL = sentences.length
 
-  var partSize = Math.floor(sentencesL / 4);
-  var part1 = sentences.slice(0, partSize);
-  var part2 = sentences.slice(partSize, partSize * 2);
-  var part3 = sentences.slice(partSize * 2, partSize * 3);
-  var part4 = sentences.slice(partSize * 3);
-
-  var contentParts = [
-    part1.join(""), // concatenate part 1 into a single string
-    part2.join(""), // concatenate part 2 into a single string
-    part3.join(""), // concatenate part 3 into a single string
-    part4.join(""), // concatenate part 4 into a single string
-  ];
-
-  console.log(contentParts);
-
+    if (sentencesL>sentencesQty) {
+      firstPart=sentences.slice(0,sentencesQty).join("");
+    } else {
+      firstPart=articlestring;
+    }
+  // console.log(contentParts);
+   return firstPart;
 }
 
 //=========================================================end of get news function========================
@@ -253,7 +239,7 @@ function readAloud() {
        // console.log(newsAudio);
       }
     }, 1000)
-
+   
     
     //listen to click event of all read aloud (play buttons and read dicreption and content of the news located in the parent-parent canrd of the cleckd buttons. Buttons are porgrammend to be used as togle switchs play/pouse.
     for (let i = 0; i < read.length; i++) {
@@ -262,14 +248,18 @@ function readAloud() {
           
         var newsDescription=read[i].parentElement.parentElement.children[1].children[0].textContent.trim()+"    ";
         //var newsContent=read[i].parentElement.parentElement.children[2].children[0].textContent.trim();
+        var totalContent=newsDescription + read[i].parentElement.parentElement.children[2].children[0].textContent.trim();
+        
+        var contentToRead=splitArticle(totalContent,10);//get the first sectense of the news to read aloud since the TTS has limitations
+        console.log(contentToRead);
         var newsContent="";
-        nxtAudioUrl="http://api.voicerss.org/?key=e25d609815964af58977c036e5460b2b&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+ newsDescription + newsContent;
+        nxtAudioUrl="http://api.voicerss.org/?key=e25d609815964af58977c036e5460b2b&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+ contentToRead;
         console.log(nxtAudioUrl, "next");
         console.log(audioUrl,"current");
         if (nxtAudioUrl===audioUrl||audioUrl==="") {
           console.log(newsAudio);
           if (newsAudio.paused) {
-            audioUrl="http://api.voicerss.org/?key=e25d609815964af58977c036e5460b2b&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+newsDescription + newsContent;
+            audioUrl="http://api.voicerss.org/?key=e25d609815964af58977c036e5460b2b&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+contentToRead;
             currntAudioIndex=i;
             newsAudio =new Audio(audioUrl);
 
@@ -287,7 +277,7 @@ function readAloud() {
           newsAudio.pause();
           read[currntAudioIndex].textContent='Play'
           
-          audioUrl="http://api.voicerss.org/?key=e25d609815964af58977c036e5460b2b&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+newsDescription + newsContent;
+          audioUrl="http://api.voicerss.org/?key=e25d609815964af58977c036e5460b2b&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+contentToRead;
           currntAudioIndex=i;
           newsAudio =new Audio(audioUrl);
 
@@ -301,12 +291,6 @@ function readAloud() {
 
 }
 //=================================end of read aloud function============================================================================
-//=================================time delay to wait for element to render before selecting elements to listen to events===================================
-// setTimeout(function() {
-//   read=document.querySelectorAll(".read-aloud");
-//   console.log(read);
-//   readAloud();
-//  }, delaytime)
 
 //add event listener to searchBtn and runs function when clicked
 document.getElementById("searchForm").addEventListener("submit", function (event) {
@@ -317,12 +301,7 @@ document.getElementById("searchForm").addEventListener("submit", function (event
   category = document.getElementById("selectCat").value
   
   getNews(searchinput, category);
-  // setTimeout(function() {
-  //   read=document.querySelectorAll(".read-aloud");
-  //   console.log(read);
-  //   readAloud();
-  //  }, 2000)
-  // activateModal();
+
 });
 
 // Function to split titles to shorter titles in favorites tab
@@ -352,13 +331,7 @@ function renderFavorites() {
       favoriteLink.classList.add('favoriteLinks','column');
       favoriteLink.setAttribute('href',parsedFavs[i].link)
 
-      // var favoriteDelBtn = document.createElement('button');
-      // favoriteDelBtn.classList.add('delBtn');
-      // favoriteDelBtn.textContent = '-';
-      // favoriteLinkDiv.append(favoriteDelBtn);
-
-
-      
+  
       favoriteLink.textContent = splitTitle(parsedFavs[i].title);
       favoriteContainerDiv.append(favoriteLink);
       
@@ -372,10 +345,7 @@ function addTofavorite () {
   // setTimeout(() => {
     var savedFavorite=[];
      
-    if (JSON.parse(localStorage.getItem('savedNews'))) {
-      savedFavorite=JSON.parse(localStorage.getItem('savedNews'));
-      console.log(savedFavorite,"1");
-    }
+   
     var newsObject={
       title:"",
       description:"",
@@ -384,6 +354,11 @@ function addTofavorite () {
     }
     for (let i = 0; i < addToFavoriteBtns.length; i++) {
       addToFavoriteBtns[i].addEventListener('click', ()=>{
+        
+        if (JSON.parse(localStorage.getItem('savedNews'))) {
+          savedFavorite=JSON.parse(localStorage.getItem('savedNews'));
+          console.log(savedFavorite,"1");
+        }
         newsObject.title=addToFavoriteBtns[i].parentElement.parentElement.children[0].children[0].textContent;
         newsObject.description=addToFavoriteBtns[i].parentElement.parentElement.children[1].children[0].textContent;
         newsObject.content=addToFavoriteBtns[i].parentElement.parentElement.children[2].children[0].textContent;
@@ -399,10 +374,11 @@ function addTofavorite () {
         if (newsIsInstorage===0) {
           savedFavorite.push(newsObject);
           localStorage.setItem("savedNews",JSON.stringify(savedFavorite));
+          renderFavorites();
         console.log("news saved")
         }
         console.log(savedFavorite,"2");
-        renderFavorites();
+        
       })
     }
     console.log("I am clicked)")
@@ -426,4 +402,3 @@ function clearFaborits(){
 var currentDayHeader = document.getElementById('day-subtitle');
 var dayJSScript = dayjs().format('dddd, MMMM D, YYYY');
 currentDayHeader.textContent = 'Today is ' + dayJSScript + '.';
-
