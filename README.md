@@ -1,6 +1,11 @@
 # Send News
-![Website preview](./assets/preview.png)
-![Modal preview](./assets/preview2.png)
+pictures for big screens
+![Website preview for big screen](./assets/send-News1_bigDisplay.png)
+![Modal preview big screen](./assets/send-News2_bigDisplay.png)
+
+preview pictures for mobile screens
+![Website preview for mobile screen](./assets/send-News1_For_MobileDisplay.png)
+![Modal preview mobile screen](./assets/send-News2_For_MobileDisplay.png)
 ## Description
 Send News is a news article search application.  Use the search and categories form to get started. Search for the news you want.  Click "ReadMore" to open up the modal to read additonal content.  Too busy to read the news?  We got you! Click our special play feature and have the news read to you so you can go about your busy day.
 ## Usage:
@@ -13,8 +18,7 @@ Send News is a news article search application.  Use the search and categories f
 
     -Link- Takes you to the source of the article displayed.
 
-    -Add To Favorite- Save the article you like to revisit it later.
-    
+    -Add To Favorite- Save the article you like to revisit it later on left side as link . When each saved links are clicked it will take us to sorce.   
 
 ## Collaborators:
 <a href="https://github.com/Getnetgit">Getnet Ali</a> 
