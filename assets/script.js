@@ -3,7 +3,7 @@ var countrystring = "country=" + country + "&"
 var searchinput = ""
 //var category = "general"
 var category="top";
-var delaytime=10000;
+var delaytime=2000;
 
 var read=document.querySelectorAll(".read-aloud");
 var newsAudio =new Audio();
@@ -203,6 +203,7 @@ function getNews(searchvar,categoryvar) {
       addToFavoriteBtns=document.querySelectorAll('.addFavoriteBtn');
       readAloud();
       addTofavorite();
+      clearFaborits();
   });
 }
 
@@ -346,16 +347,20 @@ function renderFavorites() {
   var parsedFavs = JSON.parse(savedFavs);
 
   for (let i = 0; i < parsedFavs.length; i++) {
-    var favoriteLinkDiv = document.createElement('a');
-      favoriteLinkDiv.classList.add('favoriteLinks', 'column');
 
-      var favoriteDelBtn = document.createElement('button');
-      favoriteDelBtn.classList.add('delBtn');
-      favoriteDelBtn.textContent = '-';
-      favoriteLinkDiv.append(favoriteDelBtn);
+    var favoriteLink = document.createElement('a');
+      favoriteLink.classList.add('favoriteLinks','column');
+      favoriteLink.setAttribute('href',parsedFavs[i].link)
+
+      // var favoriteDelBtn = document.createElement('button');
+      // favoriteDelBtn.classList.add('delBtn');
+      // favoriteDelBtn.textContent = '-';
+      // favoriteLinkDiv.append(favoriteDelBtn);
+
+
       
-      favoriteLinkDiv.textContent = splitTitle(parsedFavs[i].title);
-      favoriteContainerDiv.append(favoriteLinkDiv);
+      favoriteLink.textContent = splitTitle(parsedFavs[i].title);
+      favoriteContainerDiv.append(favoriteLink);
       
       console.log(parsedFavs[i].title)
       console.log('Rendered!')
@@ -397,6 +402,7 @@ function addTofavorite () {
         console.log("news saved")
         }
         console.log(savedFavorite,"2");
+        renderFavorites();
       })
     }
     console.log("I am clicked)")
@@ -406,7 +412,18 @@ function addTofavorite () {
 
 //Add event listner to clear favorite button which will cleare lcal storage and call render favorite function to cleare it from the page.
 
+function clearFaborits(){
+  var clearFabBtn=document.querySelector('.clearFabBtn');
+  clearFabBtn.addEventListener("click",()=>{
+    localStorage.removeItem("savedNews")
+    var favoriteContainerDiv = document.querySelector('.favorite');
+    favoriteContainerDiv.innerHTML ="";
+    console.log("I am cleared")
+  })
+}
+
 // Day.js to add current date to top of page underneath logo
 var currentDayHeader = document.getElementById('day-subtitle');
 var dayJSScript = dayjs().format('dddd, MMMM D, YYYY');
 currentDayHeader.textContent = 'Today is ' + dayJSScript + '.';
+
