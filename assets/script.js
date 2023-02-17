@@ -253,13 +253,13 @@ function readAloud() {
         var contentToRead=splitArticle(totalContent,5);//get the first sectense of the news to read aloud since the TTS has limitations
         console.log(contentToRead);
         var newsContent="";
-        nxtAudioUrl="http://api.voicerss.org/?key=e25d609815964af58977c036e5460b2b&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+ contentToRead;
+        nxtAudioUrl="http://api.voicerss.org/?key=931b0f45ed21434199b47c268bd8a314&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+ contentToRead;
         console.log(nxtAudioUrl, "next");
         console.log(audioUrl,"current");
         if (nxtAudioUrl===audioUrl||audioUrl==="") {
           console.log(newsAudio);
           if (newsAudio.paused) {
-            audioUrl="http://api.voicerss.org/?key=e25d609815964af58977c036e5460b2b&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+contentToRead;
+            audioUrl="http://api.voicerss.org/?key=931b0f45ed21434199b47c268bd8a314&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+contentToRead;
             currntAudioIndex=i;
             newsAudio =new Audio(audioUrl);
 
@@ -277,7 +277,7 @@ function readAloud() {
           newsAudio.pause();
           read[currntAudioIndex].textContent='Play'
           
-          audioUrl="http://api.voicerss.org/?key=e25d609815964af58977c036e5460b2b&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+contentToRead;
+          audioUrl="http://api.voicerss.org/?key=931b0f45ed21434199b47c268bd8a314&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+contentToRead;
           currntAudioIndex=i;
           newsAudio =new Audio(audioUrl);
 
