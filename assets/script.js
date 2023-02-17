@@ -261,7 +261,7 @@ function readAloud() {
         //var newsContent=read[i].parentElement.parentElement.children[2].children[0].textContent.trim();
         var totalContent=newsDescription + read[i].parentElement.parentElement.children[2].children[0].textContent.trim();
         
-        var contentToRead=splitArticle(totalContent,10);//get the first sectense of the news to read aloud since the TTS has limitations
+        var contentToRead=splitArticle(totalContent,5);//get the first sectense of the news to read aloud since the TTS has limitations
         console.log(contentToRead);
         var newsContent="";
         nxtAudioUrl="http://api.voicerss.org/?key=e25d609815964af58977c036e5460b2b&hl=en-us&c=MP3&f=16khz_16bit_stereo&src="+ contentToRead;
